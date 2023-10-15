@@ -29,7 +29,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sv443/Userscript.ts.git"
+    "url": "git+https://github.com/Sv443-Network/UserUtils-Test.git"
   },
   "dependencies": {
     "@sv443-network/userutils": "^1.0.0"
