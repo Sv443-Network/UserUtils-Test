@@ -25,8 +25,8 @@ const branch = "main";
  * See https://wiki.greasespot.net/Metadata_Block#%40match
  */
 const matchUrls = [
-  "https://example.org/*",
-  "https://example.com/*",
+  "http://localhost:12121/*",
+  "http://127.0.0.1:12121/*",
 ];
 /**
  * URL to the icon of the userscript.  
@@ -47,7 +47,8 @@ const distFolderPath = webpackCfgOutput.path;
 const scriptUrl = `https://raw.githubusercontent.com/${repo}/${branch}/dist/${encodeURI(userscriptDistFile)}`;
 
 const matchDirectives = matchUrls.reduce((a, c) => a + `// @match           ${c}\n`, "");
-const requireDirectives = Object.entries(deps).reduce((a, [, { url }]) => a + `// @require         ${url}\n`, "");
+const requireDirectives = (Object.entries(deps) as [string, Record<"url", string>][])
+  .reduce((a, [, { url }]) => a + `// @require         ${url}\n`, "");
 
 const envPort = Number(env.DEV_SERVER_PORT);
 const devServerPort = isNaN(envPort) || envPort === 0 ? 8710 : envPort;
@@ -70,25 +71,16 @@ ${matchDirectives}\
 ${requireDirectives}\
 // @downloadURL     ${scriptUrl}
 // @updateURL       ${scriptUrl}
+// @grant           GM.getValue
+// @grant           GM.setValue
+// @grant           GM.deleteValue
+// @grant           GM.listValues
+// @grant           GM.getResourceUrl
+// @grant           GM.setClipboard
+// @grant           GM.registerMenuCommand
+// @grant           unsafeWindow
 // ==/UserScript==
 `;
-
-// other directives you might want to add:
-
-// localized name and description, see https://wiki.greasespot.net/Metadata_Block#@name
-// @name:de         ${pkg["userscriptName:de"]}
-// @description:de  ${pkg["description:de"]}
-
-// set and read persistent values
-// @grant           GM.setValue
-// @grant           GM.getValue
-
-// don't run inside iframes
-// @noframes
-
-// pre-cache resources for use with GM.getResourceUrl(), see https://wiki.greasespot.net/GM.getResourceUrl
-// @resource        myimage https://example.org/myimage.png
-// @resource        mytext https://example.org/something.txt
 
 
 (async () => {

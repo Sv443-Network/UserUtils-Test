@@ -1,5 +1,5 @@
 import { addGlobalStyle } from "@sv443-network/userutils";
-import { insertExampleElements } from "./example";
+import { selectorObserverTest } from "./selectorObserver";
 
 /**
  * Called whenever the script is initialized, depending on the value of `@run-at` inside the userscript header.  
@@ -23,8 +23,7 @@ function onLoad() {
   if(!globalStyle.match(/^{{.+}}$/))
     addGlobalStyle(globalStyle);
 
-  // go to this function's definition in `example.ts` for an example on how to import HTML, CSS and markdown
-  insertExampleElements();
+  selectorObserverTest();
 }
 
 init();

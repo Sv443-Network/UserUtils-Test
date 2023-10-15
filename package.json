@@ -1,11 +1,9 @@
 {
-  "name": "userscript.ts",
+  "name": "userutils-test",
   "version": "0.1.0",
-  "userscriptName": "CHANGE_ME",
-  "userscriptName:de": "REMOVE_IF_NOT_NEEDED (example for localization - see also src/tools/post-build.ts)",
-  "description": "CHANGE_ME_TOO",
-  "description:de": "REMOVE_IF_NOT_NEEDED (example for localization - see also src/tools/post-build.ts)",
-  "homepage": "https://github.com/Sv443/Userscript.ts",
+  "userscriptName": "UserUtils-Test",
+  "description": "Test userscript for UserUtils: https://github.com/Sv443-Network/UserUtils",
+  "homepage": "https://github.com/Sv443-Network/UserUtils-Test",
   "main": "./src/index.ts",
   "type": "module",
   "scripts": {
@@ -28,7 +26,7 @@
     "name": "Sv443",
     "url": "https://github.com/Sv443"
   },
-  "license": "WTFPL",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sv443/Userscript.ts.git"
