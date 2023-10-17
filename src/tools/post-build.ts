@@ -12,6 +12,7 @@ dotenv.config();
 
 const envPort = Number(env.DEV_SERVER_PORT);
 const devServerPort = isNaN(envPort) || envPort === 0 ? 8710 : envPort;
+const testSitePort = 12121;
 
 /**
  * Namespace (user or organization) and repository name, separated by a slash.  
@@ -27,8 +28,8 @@ const branch = "main";
  * See https://wiki.greasespot.net/Metadata_Block#%40match
  */
 const matchUrls = [
-  `http://localhost:${envPort}/*`,
-  `http://127.0.0.1:${envPort}/*`,
+  `http://localhost:${testSitePort}/*`,
+  `http://127.0.0.1:${testSitePort}/*`,
 ];
 /**
  * URL to the icon of the userscript.  
@@ -120,7 +121,7 @@ ${requireDirectives}\
     console.info(`\nSuccessfully built for ${modeText}\x1b[0m`);
     lastCommitSha && console.info(`Build number (last commit SHA): \x1b[34m${lastCommitSha}\x1b[0m`);
     console.info(`Outputted file '${encodeURI(relative("./", scriptPath))}' with a size of \x1b[32m${sizeKiB} KiB\x1b[0m`);
-    console.info(`Userscript URL: \x1b[34m\x1b[4mhttp://localhost:${devServerPort}/${encodeURI(userscriptDistFile)}\x1b[0m\x1b[0m\n`);
+    console.info(`Userscript URL: \x1b[34m\x1b[4mhttp://localhost:${devServerPort}/${encodeURI(userscriptDistFile)}\x1b[0m\n`);
 
     ringBell && process.stdout.write("\u0007");
 

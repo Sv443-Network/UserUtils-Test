@@ -5,25 +5,27 @@ export async function selectorObserverTest() {
 
   bodyObs.addListener("#selector-observer-cont", {
     listener: (cont1) => {
-      console.log("container 1 available");
+      console.log("bodyObs: available");
 
       const subcont1Obs = new SelectorObserver(cont1);
 
       subcont1Obs.addListener("#selector-observer-subcont1", {
         listener: (subcont1) => {
-          console.log("subcontainer 1 available");
+          console.log("subcont1Obs: available");
 
           const subcont1ItemsObs = new SelectorObserver(subcont1);
 
-          subcont1ItemsObs.addListener(".selector-observer-subcont", {
+          subcont1ItemsObs.addListener(".selector-observer-item", {
             all: true,
             continuous: true,
             listener: (subcont1Items) => {
-              console.log("subcontainer 1 items:", subcont1Items);
+              console.log("subcont1Obs: items:", subcont1Items);
             },
           });
         },
       });
+      console.log("subcont1Obs: listeners:", subcont1Obs.getAllListeners());
     },
   });
+  console.log("bodyObs: listeners:", bodyObs.getAllListeners());
 }
