@@ -10,6 +10,8 @@ import deps from "../../dependencies.json" assert { type: "json" };
 const { env, exit } = process;
 dotenv.config();
 
+const envPort = Number(env.DEV_SERVER_PORT);
+const devServerPort = isNaN(envPort) || envPort === 0 ? 8710 : envPort;
 
 /**
  * Namespace (user or organization) and repository name, separated by a slash.  
@@ -25,8 +27,8 @@ const branch = "main";
  * See https://wiki.greasespot.net/Metadata_Block#%40match
  */
 const matchUrls = [
-  "http://localhost:12121/*",
-  "http://127.0.0.1:12121/*",
+  `http://localhost:${envPort}/*`,
+  `http://127.0.0.1:${envPort}/*`,
 ];
 /**
  * URL to the icon of the userscript.  
@@ -49,9 +51,6 @@ const scriptUrl = `https://raw.githubusercontent.com/${repo}/${branch}/dist/${en
 const matchDirectives = matchUrls.reduce((a, c) => a + `// @match           ${c}\n`, "");
 const requireDirectives = (Object.entries(deps) as [string, Record<"url", string>][])
   .reduce((a, [, { url }]) => a + `// @require         ${url}\n`, "");
-
-const envPort = Number(env.DEV_SERVER_PORT);
-const devServerPort = isNaN(envPort) || envPort === 0 ? 8710 : envPort;
 
 
 /** See https://wiki.greasespot.net/Metadata_Block */
@@ -120,7 +119,8 @@ ${requireDirectives}\
 
     console.info(`\nSuccessfully built for ${modeText}\x1b[0m`);
     lastCommitSha && console.info(`Build number (last commit SHA): \x1b[34m${lastCommitSha}\x1b[0m`);
-    console.info(`Outputted file '${encodeURI(relative("./", scriptPath))}' with a size of \x1b[32m${sizeKiB} KiB\x1b[0m\n`);
+    console.info(`Outputted file '${encodeURI(relative("./", scriptPath))}' with a size of \x1b[32m${sizeKiB} KiB\x1b[0m`);
+    console.info(`Userscript URL: \x1b[34m\x1b[4mhttp://localhost:${devServerPort}/${encodeURI(userscriptDistFile)}\x1b[0m\x1b[0m\n`);
 
     ringBell && process.stdout.write("\u0007");
 
