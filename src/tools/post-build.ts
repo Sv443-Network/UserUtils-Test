@@ -4,8 +4,8 @@ import { exec } from "child_process";
 import dotenv from "dotenv";
 
 import { output as webpackCfgOutput } from "../../webpack.config.js";
-import pkg from "../../package.json" assert { type: "json" };
-import deps from "../../dependencies.json" assert { type: "json" };
+import pkg from "../../package.json" with { type: "json" };
+import deps from "../../dependencies.json" with { type: "json" };
 
 const { env, exit } = process;
 dotenv.config();

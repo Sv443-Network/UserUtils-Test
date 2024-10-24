@@ -5,8 +5,8 @@ import { resolve } from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
-import pkg from "./package.json" assert { type: "json" };
-import deps from "./dependencies.json" assert { type: "json" };
+import pkg from "./package.json" with { type: "json" };
+import deps from "./dependencies.json" with { type: "json" };
 
 dotenv.config();
 
