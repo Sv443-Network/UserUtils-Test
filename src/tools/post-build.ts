@@ -144,7 +144,7 @@ async function exists(path: string) {
     await access(path, fsconstants.R_OK | fsconstants.W_OK);
     return true;
   }
-  catch(err) {
+  catch {
     return false;
   }
 }

@@ -49,7 +49,7 @@ export default (env) => {
       // since sites like greasyfork don't allow minified userscripts:
       minimize: false,
       minimizer: [
-        `...`,
+        "...",
         new CssMinimizerPlugin(),
       ],
     },
@@ -100,7 +100,7 @@ export default (env) => {
     },
     // enable sourcemaps if NODE_ENV === "development"
     ...(mode === "development" ? { devtool: "source-map" } : {}),
-    ...(silent ? { stats: "errors-only", } : {}),
+    ...(silent ? { stats: "errors-only" } : {}),
     plugins: [
       new MiniCssExtractPlugin({
         // name of the emitted css bundle
