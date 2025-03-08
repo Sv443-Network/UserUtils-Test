@@ -1,5 +1,5 @@
 import { addGlobalStyle } from "@sv443-network/userutils";
-import { selectorObserverTest } from "./selectorObserver";
+import { selectorObserverTest } from "./selectorObserver.js";
 
 /**
  * Called whenever the script is initialized, depending on the value of `@run-at` inside the userscript header.  
